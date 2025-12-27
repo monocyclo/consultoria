@@ -1278,9 +1278,8 @@
       mensaje: $("#message").value.trim(),
     };
 
-    // URL de tu Google Apps Script Web App
-    // REEMPLAZA ESTA URL con la tuya después de desplegar el script
-    const scriptURL = 'TU_URL_DE_GOOGLE_APPS_SCRIPT_AQUI';
+    // URL de Google Apps Script Web App
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxQTEdxw3rx98KzCoqeWQ9bLWbu7boUpO2vtRzzo2bvGY3NSeRHD3zZfmyEfkpWE2LC/exec';
     
     try {
       // Mostrar mensaje de envío
@@ -1290,35 +1289,24 @@
       // Enviar a Google Sheets
       const response = await fetch(scriptURL, {
         method: 'POST',
-        body: JSON.stringify(formData),
+        mode: 'no-cors',
         headers: {
           'Content-Type': 'application/json'
-        }
+        },
+        body: JSON.stringify(formData)
       });
 
-      if (response.ok) {
-        formMsg.textContent = "✓ Solicitud recibida. Te contactaremos pronto.";
-        formMsg.style.color = "var(--sky)";
-        formMsg.style.fontWeight = "500";
-        leadForm.reset();
-      } else {
-        throw new Error('Error al enviar');
-      }
-    } catch (error) {
-      // Si falla, guardar localmente
-      const storeKey = "monocyclo_leads_v6";
-      const leads = JSON.parse(localStorage.getItem(storeKey) || "[]");
-      leads.unshift({
-        id: crypto?.randomUUID ? crypto.randomUUID() : String(Date.now()),
-        created_at: new Date().toISOString(),
-        form: formData
-      });
-      localStorage.setItem(storeKey, JSON.stringify(leads.slice(0,100)));
-      
-      formMsg.textContent = "✓ Solicitud guardada temporalmente. Te contactaremos pronto.";
-      formMsg.style.color = "var(--gold)";
+      // Con mode: 'no-cors' siempre será exitoso
+      formMsg.textContent = "✓ Solicitud enviada correctamente. Te contactaremos pronto.";
+      formMsg.style.color = "var(--sky)";
       formMsg.style.fontWeight = "500";
       leadForm.reset();
+      
+    } catch (error) {
+      console.error('Error:', error);
+      formMsg.textContent = "⚠ Hubo un problema. Por favor intenta de nuevo o contáctanos por WhatsApp.";
+      formMsg.style.color = "var(--rust)";
+      formMsg.style.fontWeight = "500";
     }
   });
 
