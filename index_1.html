@@ -1,0 +1,1331 @@
+<!doctype html>
+<html lang="es">
+<head>
+  <meta charset="utf-8" />
+  <meta name="viewport" content="width=device-width,initial-scale=1" />
+  <meta name="theme-color" content="#78AFC5" />
+  <title>MONOCYCLO | Consultoría en negocios sostenibles y resilientes</title>
+  <meta name="description" content="Transformamos el sector empresarial y social a nivel local y regional: optimiza procesos, genera impacto regenerativo y construye cultura de seguridad." />
+
+  <style>
+    @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&display=swap');
+
+    :root{
+      /* Paleta Monocyclo */
+      --sky: #78AFC5;
+      --sky-2:#5D9FB9;
+      --sky-light:#E8F4F8;
+      --gold:#C9A23D;
+      --gold-light:#FFF8E7;
+      --rust:#A04B3A;
+
+      --bg:#FFFFFF;
+      --bg-alt:#FAFBFC;
+      --card:#FFFFFF;
+      --ink:#1a1a1a;
+      --muted:#6B7280;
+      --line:#E5E7EB;
+      
+      --shadow: 0 1px 3px rgba(0,0,0,.08);
+      --shadow-md: 0 4px 12px rgba(0,0,0,.06);
+      --shadow-lg: 0 8px 24px rgba(0,0,0,.08);
+
+      --radius: 12px;
+      --max: 1200px;
+      --ease: cubic-bezier(.4,0,.2,1);
+    }
+
+    *{
+      box-sizing:border-box;
+      margin:0;
+      padding:0;
+    }
+    
+    html{scroll-behavior: smooth}
+    
+    body{
+      font-family: 'Inter', -apple-system, BlinkMacSystemFont, "Segoe UI", system-ui, sans-serif;
+      color:var(--ink);
+      background: var(--bg);
+      overflow-x:hidden;
+      line-height: 1.6;
+      font-weight: 400;
+      -webkit-font-smoothing: antialiased;
+      -moz-osx-font-smoothing: grayscale;
+    }
+
+    a{color:inherit; text-decoration: none}
+    img{max-width:100%;display:block}
+
+    .wrap{max-width:var(--max); margin:0 auto; padding:0 24px}
+
+    /* Header */
+    header{
+      position:sticky; top:0; z-index:50;
+      background: rgba(255,255,255,.96);
+      backdrop-filter: blur(12px);
+      border-bottom: 1px solid var(--line);
+    }
+    .nav{
+      display:flex; 
+      align-items:center; 
+      justify-content:space-between;
+      gap:24px; 
+      padding:20px 0;
+    }
+    .brand{
+      display:flex; 
+      align-items:center; 
+      gap:16px;
+      transition: opacity .3s var(--ease);
+    }
+    .brand:hover{opacity: .8}
+    .brand img{
+      height:52px;
+      width:auto;
+    }
+
+    .menu{
+      display:flex; 
+      align-items:center; 
+      gap:8px; 
+      flex-wrap:wrap;
+    }
+    .menu a{
+      font-size:15px;
+      font-weight:500;
+      padding:10px 16px;
+      border-radius:8px;
+      color:var(--ink);
+      transition: all .2s var(--ease);
+      letter-spacing: -.01em;
+    }
+    .menu a:hover{
+      background: var(--bg-alt);
+      color:var(--sky);
+    }
+
+    .btn{
+      appearance:none; 
+      border:0;
+      padding:12px 24px;
+      border-radius:8px;
+      background: var(--sky);
+      color:white; 
+      font-weight:600; 
+      font-size:15px;
+      cursor:pointer;
+      transition: all .2s var(--ease);
+      white-space:nowrap;
+      letter-spacing: -.01em;
+    }
+    .btn:hover{
+      background: var(--sky-2);
+      transform: translateY(-1px);
+      box-shadow: var(--shadow-md);
+    }
+    
+    .btn.secondary{
+      background: transparent;
+      color: var(--ink);
+      border: 1px solid var(--line);
+    }
+    .btn.secondary:hover{
+      background: var(--bg-alt);
+      border-color: var(--sky);
+      color: var(--sky);
+    }
+
+    /* Hero */
+    .hero{
+      padding:80px 0 60px;
+      background: 
+        linear-gradient(180deg, var(--bg-alt) 0%, var(--bg) 100%);
+    }
+
+    .heroGrid{
+      display:grid;
+      grid-template-columns: 1.1fr .9fr;
+      gap:48px;
+      align-items:center;
+    }
+
+    .heroContent h1{
+      margin:0 0 20px; 
+      font-size:52px; 
+      line-height:1.1; 
+      font-weight:700;
+      color:var(--ink);
+      letter-spacing: -.03em;
+    }
+    .heroContent h1 .highlight{
+      color:var(--sky);
+    }
+    .heroContent .lead{
+      margin:0 0 32px; 
+      color:var(--muted); 
+      font-size:19px; 
+      line-height:1.6;
+      max-width:55ch;
+      font-weight: 400;
+    }
+
+    .pill{
+      display:inline-flex; 
+      align-items:center; 
+      gap:8px;
+      padding:8px 16px;
+      border-radius:999px;
+      border:1px solid var(--line);
+      background: white;
+      font-size:13px;
+      font-weight:500;
+      color:var(--muted);
+      margin-bottom:20px;
+    }
+    .dot{
+      width:6px; 
+      height:6px; 
+      border-radius:99px;
+      background: var(--gold);
+      box-shadow: 0 0 0 3px var(--gold-light);
+      animation: pulseColors 3s ease-in-out infinite;
+    }
+    
+    @keyframes pulseColors {
+      0%, 100% { 
+        background: var(--gold);
+        box-shadow: 0 0 0 3px var(--gold-light);
+      }
+      33% { 
+        background: var(--sky);
+        box-shadow: 0 0 0 3px var(--sky-light);
+      }
+      66% { 
+        background: var(--rust);
+        box-shadow: 0 0 0 3px var(--rust-light);
+      }
+    }
+
+    .heroActions{
+      display:flex; 
+      gap:12px; 
+      flex-wrap:wrap; 
+      margin-bottom:48px;
+    }
+
+    .stats{
+      display:grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap:16px;
+    }
+    .stat{
+      padding:24px;
+      border:1px solid var(--line);
+      background: white;
+      border-radius: var(--radius);
+      transition: all .2s var(--ease);
+      position: relative;
+      overflow: hidden;
+    }
+    .stat:before{
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 4px;
+      background: var(--sky);
+      transition: all .2s var(--ease);
+    }
+    .stat:nth-child(2):before{
+      background: var(--gold);
+    }
+    .stat:nth-child(3):before{
+      background: var(--rust);
+    }
+    .stat:hover{
+      border-color: var(--sky);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .stat:nth-child(2):hover{
+      border-color: var(--gold);
+    }
+    .stat:nth-child(3):hover{
+      border-color: var(--rust);
+    }
+    .stat strong{
+      display:block; 
+      font-size:17px;
+      margin-bottom:8px;
+      color:var(--ink);
+      font-weight:600;
+    }
+    .stat small{
+      color:var(--muted);
+      font-size:14px;
+      line-height:1.5;
+      font-weight: 400;
+    }
+
+    .heroImage{
+      text-align: center;
+      position: relative;
+    }
+    .heroImage img{
+      width: 100%;
+      max-width: 480px;
+      height: auto;
+      margin: 0 auto;
+      filter: drop-shadow(0 20px 40px rgba(0,0,0,.08));
+      animation: float 6s ease-in-out infinite;
+    }
+    
+    @keyframes float {
+      0%, 100% { transform: translateY(0px); }
+      50% { transform: translateY(-20px); }
+    }
+
+    /* Sections */
+    section{padding:80px 0}
+    
+    .sectionTitle{
+      margin-bottom:48px;
+      text-align: center;
+      max-width: 800px;
+      margin-left: auto;
+      margin-right: auto;
+    }
+    .sectionTitle h2{
+      margin:0 0 16px; 
+      font-size:40px; 
+      font-weight:700;
+      color:var(--ink);
+      letter-spacing: -.02em;
+    }
+    .sectionTitle p{
+      margin:0; 
+      color:var(--muted); 
+      font-size:18px; 
+      line-height:1.6;
+      font-weight: 400;
+    }
+
+    .grid3{
+      display:grid; 
+      grid-template-columns: repeat(3, 1fr); 
+      gap:24px;
+    }
+    .grid2{
+      display:grid; 
+      grid-template-columns: repeat(2, 1fr); 
+      gap:24px;
+    }
+
+    .card{
+      border:1px solid var(--line);
+      background: white;
+      border-radius: var(--radius);
+      overflow:hidden;
+    }
+
+    .tile{
+      padding:32px;
+      border-radius: var(--radius);
+      border:1px solid var(--line);
+      background: white;
+      transition: all .2s var(--ease);
+      height: 100%;
+      position: relative;
+    }
+    .tile:before{
+      content: "";
+      position: absolute;
+      top: 0;
+      left: 0;
+      right: 0;
+      height: 3px;
+      background: var(--sky);
+      border-radius: var(--radius) var(--radius) 0 0;
+      opacity: 0;
+      transition: all .2s var(--ease);
+    }
+    .tile:nth-child(2):before{
+      background: var(--gold);
+    }
+    .tile:nth-child(3):before{
+      background: var(--rust);
+    }
+    .tile:hover{
+      border-color: var(--sky);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+    .tile:nth-child(2):hover{
+      border-color: var(--gold);
+    }
+    .tile:nth-child(3):hover{
+      border-color: var(--rust);
+    }
+    .tile:hover:before{
+      opacity: 1;
+    }
+
+    .kicker{
+      display:inline-flex; 
+      gap:8px; 
+      align-items:center;
+      color:var(--sky); 
+      font-size:13px;
+      font-weight:600;
+      letter-spacing:.02em; 
+      text-transform:uppercase;
+      margin-bottom:16px;
+    }
+    
+    .tile:nth-child(2) .kicker{
+      color: var(--gold);
+    }
+    
+    .tile:nth-child(3) .kicker{
+      color: var(--rust);
+    }
+
+    .tile h3{
+      margin:0 0 12px; 
+      font-size:22px;
+      font-weight:600;
+      line-height:1.3;
+      color:var(--ink);
+      letter-spacing: -.01em;
+    }
+    .tile p{
+      margin:0; 
+      color:var(--muted); 
+      font-size:15px; 
+      line-height:1.6;
+      font-weight: 400;
+    }
+    .tile p + p{margin-top:12px}
+
+    .callout{
+      padding:28px;
+      border-radius: var(--radius);
+      border:2px solid transparent;
+      background: 
+        linear-gradient(white, white) padding-box,
+        linear-gradient(135deg, var(--sky), var(--gold), var(--rust)) border-box;
+      color: var(--ink);
+      font-size:16px; 
+      line-height:1.7;
+      font-weight: 400;
+      position: relative;
+    }
+    .callout:before{
+      content: "";
+      position: absolute;
+      inset: 0;
+      border-radius: var(--radius);
+      background: linear-gradient(135deg, var(--sky-light), var(--gold-light), var(--rust-light));
+      opacity: 0.3;
+      z-index: -1;
+    }
+    .callout strong{
+      font-weight:600;
+      color:var(--sky-2);
+    }
+
+    /* MVV Cards */
+    .mvv-container{
+      display: grid;
+      gap: 24px;
+      margin-top: 48px;
+    }
+
+    .mvv-card{
+      padding: 40px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: white;
+      box-shadow: var(--shadow);
+    }
+
+    .mvv-label{
+      display: inline-flex;
+      align-items: center;
+      gap: 10px;
+      padding: 8px 16px;
+      border-radius: 999px;
+      background: var(--sky-light);
+      border: 1px solid var(--sky);
+      font-size: 13px;
+      font-weight: 600;
+      letter-spacing: .02em;
+      text-transform: uppercase;
+      color: var(--sky-2);
+      margin-bottom: 20px;
+      transition: all .2s var(--ease);
+    }
+    
+    .mvv-card:nth-child(2) .mvv-label{
+      background: var(--gold-light);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+    
+    .mvv-card:hover .mvv-label{
+      transform: translateX(5px);
+    }
+
+    .mvv-card p{
+      margin: 0;
+      color: var(--ink);
+      font-size: 17px;
+      line-height: 1.7;
+      font-weight: 400;
+    }
+
+    /* Valores */
+    .valores-grid{
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+      gap: 20px;
+      margin-top: 48px;
+    }
+
+    .valor-card{
+      padding: 28px;
+      border-radius: var(--radius);
+      border: 1px solid var(--line);
+      background: white;
+      transition: all .2s var(--ease);
+      text-align: center;
+    }
+
+    .valor-card:hover{
+      border-color: var(--sky);
+      box-shadow: var(--shadow-md);
+      transform: translateY(-2px);
+    }
+
+    .valor-icon{
+      width: 64px;
+      height: 64px;
+      border-radius: 50%;
+      background: var(--sky-light);
+      border: 2px solid var(--sky);
+      display: grid;
+      place-items: center;
+      margin: 0 auto 16px;
+      font-size: 14px;
+      font-weight: 600;
+      color: var(--sky-2);
+      letter-spacing: .5px;
+      transition: all .2s var(--ease);
+    }
+    
+    .valor-card:nth-child(2) .valor-icon,
+    .valor-card:nth-child(5) .valor-icon{
+      background: var(--gold-light);
+      border-color: var(--gold);
+      color: var(--gold);
+    }
+    
+    .valor-card:nth-child(3) .valor-icon,
+    .valor-card:nth-child(6) .valor-icon{
+      background: var(--rust-light);
+      border-color: var(--rust);
+      color: var(--rust);
+    }
+    
+    .valor-card:hover .valor-icon{
+      transform: scale(1.1);
+    }
+
+    .valor-card h4{
+      margin: 0 0 12px;
+      font-size: 18px;
+      font-weight: 600;
+      color: var(--ink);
+      letter-spacing: -.01em;
+    }
+
+    .valor-card p{
+      margin: 0;
+      color: var(--muted);
+      font-size: 14px;
+      line-height: 1.6;
+      font-weight: 400;
+    }
+
+    /* List */
+    .list{display:grid; gap:12px}
+    .item{
+      display:grid;
+      grid-template-columns: 36px 1fr;
+      gap:16px;
+      padding:16px;
+      border-radius: 10px;
+      border:1px solid var(--line);
+      background: white;
+      transition: all .2s var(--ease);
+    }
+    .item:hover{
+      border-color: var(--sky);
+    }
+    .badge{
+      width:36px; 
+      height:36px;
+      border-radius: 8px;
+      display:grid; 
+      place-items:center;
+      background: var(--sky);
+      font-weight:600;
+      color: white;
+      font-size:16px;
+      transition: all .2s var(--ease);
+    }
+    .item:nth-child(2) .badge{
+      background: var(--gold);
+    }
+    .item:nth-child(3) .badge{
+      background: var(--rust);
+    }
+    .item:nth-child(4) .badge{
+      background: var(--sky-2);
+    }
+    .item:hover .badge{
+      transform: scale(1.1);
+    }
+    .item strong{
+      display:block; 
+      font-size:16px;
+      margin-bottom:4px;
+      color:var(--ink);
+      font-weight:600;
+    }
+    .item span{
+      color:var(--muted); 
+      font-size:14px; 
+      line-height:1.5;
+      font-weight: 400;
+    }
+
+    /* Form */
+    .row{display:grid; grid-template-columns: 1fr 1fr; gap:16px}
+    label{
+      font-size:14px; 
+      color:var(--ink);
+      font-weight:500;
+      margin-bottom:6px;
+      display:block;
+    }
+    input, select, textarea{
+      width:100%;
+      padding:14px 16px;
+      border-radius: 8px;
+      border:1px solid var(--line);
+      background: white;
+      color:var(--ink);
+      outline:none;
+      font-size:15px;
+      font-family: inherit;
+      font-weight: 400;
+      transition: all .2s var(--ease);
+    }
+    textarea{min-height:120px; resize:vertical}
+    input:focus, select:focus, textarea:focus{
+      border-color: var(--sky);
+      box-shadow: 0 0 0 3px var(--sky-light);
+    }
+
+    /* Social */
+    .social{
+      display:flex; 
+      gap:12px; 
+      flex-wrap:wrap;
+      margin-top: 20px;
+    }
+    .social a{
+      width:44px; 
+      height:44px; 
+      border-radius:8px;
+      display:grid; 
+      place-items:center;
+      background: var(--bg-alt);
+      border: 1px solid var(--line);
+      transition: all .2s var(--ease);
+    }
+    .social a svg{width:20px; height:20px; color:var(--muted)}
+    
+    /* Instagram - Gradiente oficial */
+    .social a[title="Instagram"]{
+      background: linear-gradient(135deg, #f09433 0%, #e6683c 25%, #dc2743 50%, #cc2366 75%, #bc1888 100%);
+      border-color: transparent;
+    }
+    .social a[title="Instagram"] svg{
+      color: white;
+    }
+    .social a[title="Instagram"]:hover{
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 6px 16px rgba(188,24,136,.3);
+    }
+    
+    /* YouTube - Rojo oficial */
+    .social a[title="YouTube"]{
+      background: #FF0000;
+      border-color: transparent;
+    }
+    .social a[title="YouTube"] svg{
+      color: white;
+    }
+    .social a[title="YouTube"]:hover{
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 6px 16px rgba(255,0,0,.3);
+    }
+    
+    /* Facebook - Azul oficial */
+    .social a[title="Facebook"]{
+      background: #1877F2;
+      border-color: transparent;
+    }
+    .social a[title="Facebook"] svg{
+      color: white;
+    }
+    .social a[title="Facebook"]:hover{
+      transform: translateY(-3px) scale(1.05);
+      box-shadow: 0 6px 16px rgba(24,119,242,.3);
+    }
+
+    /* Footer */
+    footer{
+      padding:60px 0 40px; 
+      border-top:1px solid var(--line);
+      background: var(--bg-alt);
+    }
+    .foot{
+      display:flex; 
+      align-items:flex-start; 
+      justify-content:space-between; 
+      gap:32px;
+      flex-wrap:wrap;
+    }
+    .foot img{
+      height: 44px;
+      width: auto;
+      margin-bottom: 16px;
+    }
+    .foot small{
+      color:var(--muted); 
+      line-height:1.7;
+      font-size:14px;
+      font-weight: 400;
+    }
+    .foot strong{
+      color:var(--ink);
+      display:block;
+      margin-bottom:10px;
+      font-size:15px;
+      font-weight:600;
+    }
+
+    /* Chatbot WhatsApp */
+    .chatbot{
+      position: fixed;
+      bottom: 24px;
+      right: 24px;
+      z-index: 100;
+    }
+    .chatbot-button{
+      width: 60px;
+      height: 60px;
+      border-radius: 50%;
+      background: #25D366;
+      border: none;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 4px 16px rgba(37,211,102,.4);
+      transition: all .3s var(--ease);
+      position: relative;
+    }
+    .chatbot-button:hover{
+      transform: scale(1.1);
+      box-shadow: 0 6px 24px rgba(37,211,102,.5);
+      background: #20BA5A;
+    }
+    .chatbot-button svg{
+      width: 32px;
+      height: 32px;
+      color: white;
+    }
+
+    /* Background sections */
+    .bg-light{
+      background: var(--bg-alt);
+    }
+
+    /* Responsive */
+    @media (max-width: 980px){
+      .heroGrid{grid-template-columns: 1fr}
+      .grid3{grid-template-columns: 1fr}
+      .grid2{grid-template-columns: 1fr}
+      .heroContent h1{font-size:40px}
+      .stats{grid-template-columns: 1fr}
+      .row{grid-template-columns: 1fr}
+      .valores-grid{grid-template-columns: 1fr}
+      .heroImage img{max-width:360px}
+    }
+
+    @media (max-width: 640px){
+      .menu a{display:none}
+      .heroContent h1{font-size:32px}
+      .sectionTitle h2{font-size:32px}
+      .tile{padding:24px}
+      .mvv-card{padding:28px}
+      .heroImage img{max-width:280px}
+      .brand img{height:44px}
+      .chatbot{bottom:16px; right:16px}
+      .chatbot-button{width:54px; height:54px}
+    }
+
+    @media (prefers-reduced-motion: reduce){
+      *{
+        animation: none !important;
+        transition: none !important;
+        scroll-behavior: auto !important;
+      }
+    }
+  </style>
+</head>
+
+<body>
+<header>
+  <div class="wrap">
+    <div class="nav">
+      <a href="#inicio" class="brand" aria-label="Monocyclo">
+        <img src="submarca_colorsobreblanco.png" alt="Monocyclo - Consultoría" />
+      </a>
+
+      <nav class="menu" aria-label="Navegación">
+        <a href="#servicios">Servicios</a>
+        <a href="#quienes">Quiénes Somos</a>
+        <a href="#intercambio">Intercambio</a>
+        <a href="#contacto">Contacto</a>
+        <button class="btn" type="button" data-scroll="#contacto">Solicitar diagnóstico</button>
+      </nav>
+    </div>
+  </div>
+</header>
+
+<main>
+  <section class="hero" id="inicio">
+    <div class="wrap">
+      <div class="heroGrid">
+        <div class="heroContent">
+          <div class="pill">
+            <span class="dot" aria-hidden="true"></span> 
+            Sector empresarial y social local y regional
+          </div>
+          <h1>
+            Transforma tu negocio en tres pasos: <span class="highlight">optimiza, impacta y protege</span>.
+          </h1>
+          <p class="lead">
+            Ayudamos al sector empresarial y social a ser más eficiente con procesos digitalizados, inteligencia artificial e inteligencia de negocios, más sostenible con estrategias regenerativas y economía circular, y más seguro con cultura de prevención y protección civil. Consultoría, formación y herramientas diseñadas para tu realidad.
+          </p>
+          <div class="heroActions">
+            <button class="btn" type="button" data-scroll="#servicios">Explorar servicios</button>
+            <button class="btn secondary" type="button" data-scroll="#quienes">Conocer más</button>
+          </div>
+
+          <div class="stats" aria-label="Indicadores">
+            <div class="stat">
+              <strong>Procesos ágiles</strong>
+              <small>Mapeo, digitalización, automatización con IA e inteligencia de negocios para optimizar operaciones y tomar mejores decisiones.</small>
+            </div>
+            <div class="stat">
+              <strong>Impacto regenerativo</strong>
+              <small>Sustentabilidad, economía circular y responsabilidad social con acciones medibles y rentables.</small>
+            </div>
+            <div class="stat">
+              <strong>Cultura de seguridad</strong>
+              <small>Protección civil, prevención de riesgos y bienestar laboral que cuida a tu equipo y asegura continuidad.</small>
+            </div>
+          </div>
+        </div>
+
+        <div class="heroImage">
+          <img src="logo_principal_colorsobreblanco.png" alt="Monocyclo - Consultoría integral" />
+        </div>
+      </div>
+
+      <div style="margin-top:48px" class="callout" role="note">
+        <strong>Nuestro enfoque:</strong> Creemos que un negocio sostenible es aquel que optimiza sus recursos, reduce su impacto y cuida a su gente. No vendemos soluciones genéricas; diseñamos programas a la medida que integran eficiencia operativa con inteligencia artificial e inteligencia de negocios, responsabilidad ambiental-social y seguridad preventiva. Arrancamos donde estás, avanzamos a tu ritmo, con resultados claros.
+      </div>
+    </div>
+  </section>
+
+  <section id="quienes">
+    <div class="wrap">
+      <div class="sectionTitle">
+        <h2>Quiénes Somos</h2>
+        <p>Acompañamos al sector empresarial y social a nivel local y regional en su transformación hacia modelos más ágiles, responsables y seguros.</p>
+      </div>
+
+      <div class="mvv-container">
+        <div class="mvv-card">
+          <span class="mvv-label">Nuestra Misión</span>
+          <p>
+            Integramos tres áreas esenciales: <strong>optimización de procesos</strong> mediante digitalización, automatización, inteligencia artificial e inteligencia de negocios; <strong>impacto regenerativo</strong> que incorpora sustentabilidad, economía circular y responsabilidad social; y <strong>cultura de seguridad</strong> a través de protección civil, prevención de riesgos y bienestar laboral. Trabajamos desde la realidad de cada organización, con herramientas accesibles y formación práctica que genera resultados medibles.
+          </p>
+        </div>
+
+        <div class="mvv-card">
+          <span class="mvv-label">Nuestra Visión</span>
+          <p>
+            Ser la consultora aliada del sector empresarial y social que busca crecer con propósito a nivel local y regional, reconocida por hacer accesible la transformación empresarial en tres dimensiones: <strong>negocios eficientes</strong> que usan datos para decidir mejor, <strong>negocios sostenibles</strong> que cuidan el planeta y las personas, y <strong>negocios seguros</strong> que protegen a su equipo. Queremos ser referencia por nuestro enfoque práctico, humano y basado en resultados tangibles.
+          </p>
+        </div>
+
+        <div class="mvv-card">
+          <span class="mvv-label">Nuestro Equipo</span>
+          <p>
+            Somos un equipo multidisciplinario con amplia trayectoria en desarrollo empresarial, optimización de procesos e innovación; diseño e implementación de protocolos de seguridad, prevención y bienestar laboral; construcción de culturas organizacionales inclusivas; y aplicación de tecnologías apropiadas, economía circular y ecología práctica. 
+          </p>
+          <p style="margin-top:12px">
+            Nuestra apuesta es generar procesos de mejora continua y aprendizaje colaborativo que enriquezcan las iniciativas, integren nuevas capacidades y construyan culturas empresariales regenerativas a través de relaciones horizontales y de largo plazo.
+          </p>
+        </div>
+      </div>
+
+      <div class="sectionTitle" style="margin-top:80px">
+        <h2>Nuestros Valores</h2>
+        <p>Los principios que guían cada decisión y cada proyecto que emprendemos.</p>
+      </div>
+
+      <div class="valores-grid">
+        <div class="valor-card">
+          <div class="valor-icon">S</div>
+          <h4>Sustentabilidad</h4>
+          <p>Equilibrio entre crecimiento y cuidado ambiental-social.</p>
+        </div>
+
+        <div class="valor-card">
+          <div class="valor-icon">I</div>
+          <h4>Inclusión</h4>
+          <p>Equidad de género y diversidad como motor de innovación.</p>
+        </div>
+
+        <div class="valor-card">
+          <div class="valor-icon">C</div>
+          <h4>Creatividad</h4>
+          <p>Soluciones innovadoras para desafíos complejos.</p>
+        </div>
+
+        <div class="valor-card">
+          <div class="valor-icon">Co</div>
+          <h4>Colaboración</h4>
+          <p>Alianzas basadas en confianza y respeto mutuo.</p>
+        </div>
+
+        <div class="valor-card">
+          <div class="valor-icon">R</div>
+          <h4>Responsabilidad</h4>
+          <p>Compromiso ético con nuestras acciones y su impacto.</p>
+        </div>
+
+        <div class="valor-card">
+          <div class="valor-icon">É</div>
+          <h4>Ética</h4>
+          <p>Integridad y transparencia en cada relación.</p>
+        </div>
+
+        <div class="valor-card">
+          <div class="valor-icon">O</div>
+          <h4>Optimismo</h4>
+          <p>Creemos en la capacidad de transformación positiva.</p>
+        </div>
+
+        <div class="valor-card">
+          <div class="valor-icon">H</div>
+          <h4>Horizontalidad</h4>
+          <p>Colaboración equitativa donde todas las voces cuentan.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="servicios" class="bg-light">
+    <div class="wrap">
+      <div class="sectionTitle">
+        <h2>Nuestros Servicios</h2>
+        <p>Tres pilares que se refuerzan mutuamente para transformar tu negocio de forma integral.</p>
+      </div>
+
+      <div class="grid3">
+        <article class="tile">
+          <div class="kicker">Pilar 1</div>
+          <h3>Optimiza tu Negocio</h3>
+          <p>Planes y modelos de negocio, mapeo y mejora de procesos, gestión eficiente de recursos, digitalización, automatización con inteligencia artificial, dashboards e inteligencia de negocios para decisiones informadas.</p>
+        </article>
+
+        <article class="tile">
+          <div class="kicker">Pilar 2</div>
+          <h3>Impacto Regenerativo</h3>
+          <p>Diagnóstico ambiental, ecología aplicada, economía circular, responsabilidad social, cultura empresarial regenerativa, diversidad e inclusión, y comunicación con propósito que integra sustentabilidad y marketing sostenible.</p>
+        </article>
+
+        <article class="tile">
+          <div class="kicker">Pilar 3</div>
+          <h3>Cuidar para Crecer</h3>
+          <p>Realización de Programa Interno de Protección Civil, gestión para renovación de licencias, prevención de riesgos laborales, higiene ocupacional, normativas de seguridad y construcción de cultura preventiva.</p>
+        </article>
+      </div>
+
+      <div class="sectionTitle" style="margin-top:80px">
+        <h2>Modalidades</h2>
+        <p>Todo lo ofrecemos en tres formatos según tus necesidades.</p>
+      </div>
+
+      <div class="grid3">
+        <article class="tile">
+          <div class="kicker">Formato</div>
+          <h3>Consultoría</h3>
+          <p>Diagnóstico personalizado, diseño de estrategias e implementación acompañada en uno o más pilares según tu prioridad.</p>
+        </article>
+
+        <article class="tile">
+          <div class="kicker">Formato</div>
+          <h3>Capacitaciones</h3>
+          <p>Talleres y programas de formación práctica para equipos en las tres áreas de trabajo. Modalidad presencial o virtual. Con opción de aval y registro ante la Secretaría del Trabajo y Previsión Social (STPS).</p>
+        </article>
+
+        <article class="tile">
+          <div class="kicker">Formato</div>
+          <h3>Cursos especializados</h3>
+          <p>Cursos, seminarios y webinars en optimización de procesos, sustentabilidad empresarial y protección civil. Programas con entregables, autodiagnósticos y certificación. Con opción de aval y registro ante la STPS.</p>
+        </article>
+      </div>
+
+      <div style="margin-top:48px" class="callout">
+        <strong>Paquetes flexibles:</strong> Armamos tu paquete según necesites. Solo diagnóstico y ruta clara (Básico), diagnóstico + implementación de herramientas esenciales (Intermedio), o acompañamiento integral con seguimiento de mediano plazo (Completo). Podemos enfocarnos en una sola área o integrar las tres según tu prioridad y presupuesto.
+      </div>
+    </div>
+  </section>
+
+  <section id="intercambio">
+    <div class="wrap">
+      <div class="sectionTitle">
+        <h2>Programa de Intercambio de Servicios</h2>
+        <p>Creemos que la consultoría de calidad no debería ser solo para quienes tienen presupuesto. Si tu proyecto tiene impacto social o comunitario y no puedes pagar con dinero, exploremos un intercambio justo.</p>
+      </div>
+
+      <div class="grid2">
+        <div class="card" style="padding:0">
+          <div style="padding:32px">
+            <div class="kicker">Procedimiento</div>
+            <div class="list">
+              <div class="item">
+                <div class="badge">1</div>
+                <div>
+                  <strong>Solicitud</strong>
+                  <span>Formulario con necesidades + qué puedes ofrecer. Respuesta en 1 semana.</span>
+                </div>
+              </div>
+              <div class="item">
+                <div class="badge">2</div>
+                <div>
+                  <strong>Evaluación</strong>
+                  <span>Utilidad y equivalencia. Ej: 1 hora asesoría = 1 hora servicio.</span>
+                </div>
+              </div>
+              <div class="item">
+                <div class="badge">3</div>
+                <div>
+                  <strong>Convenio</strong>
+                  <span>Acuerdo escrito con alcance, entregables y calendario.</span>
+                </div>
+              </div>
+              <div class="item">
+                <div class="badge">4</div>
+                <div>
+                  <strong>Intercambio</strong>
+                  <span>Ejecución y verificación con evidencias tangibles.</span>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+
+        <div class="card" style="padding:32px">
+          <div class="kicker">Servicios aceptables</div>
+          <h3 style="margin:0 0 16px; font-size:20px; font-weight:600">Qué aceptamos</h3>
+          <ul style="margin:0; padding:0 0 0 20px; color:var(--muted); font-size:15px; line-height:1.8">
+            <li>Servicios creativos (diseño, fotografía, video)</li>
+            <li>Bienes físicos (café, productos orgánicos)</li>
+            <li>Voluntariado y talleres comunitarios</li>
+            <li>Espacios físicos (salas, co-working)</li>
+          </ul>
+
+          <div style="height:20px"></div>
+          <div class="callout">
+            <strong>Criterios:</strong> Equivalencia tiempo/valor, utilidad real, capacidad de ejecución y compromiso documentado.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section id="contacto" class="bg-light">
+    <div class="wrap">
+      <div class="sectionTitle">
+        <h2>Contacto</h2>
+        <p>Déjanos tus datos y cuéntanos tu proyecto. Te responderemos con una propuesta personalizada.</p>
+      </div>
+
+      <div class="grid2">
+        <div class="card" style="padding:32px">
+          <div class="kicker">Formulario</div>
+          <form id="leadForm">
+            <div class="row">
+              <div>
+                <label for="name">Nombre</label>
+                <input id="name" name="name" placeholder="Tu nombre" required />
+              </div>
+              <div>
+                <label for="email">Correo</label>
+                <input id="email" name="email" type="email" placeholder="tucorreo@empresa.com" required />
+              </div>
+            </div>
+
+            <div class="row">
+              <div>
+                <label for="company">Empresa</label>
+                <input id="company" name="company" placeholder="Nombre de tu negocio" />
+              </div>
+              <div>
+                <label for="phone">WhatsApp</label>
+                <input id="phone" name="phone" placeholder="+52 ..." />
+              </div>
+            </div>
+
+            <div class="row">
+              <div>
+                <label for="interest">Interés principal</label>
+                <select id="interest" name="interest" required>
+                  <option value="">Selecciona…</option>
+                  <option>Optimiza tu Negocio</option>
+                  <option>Impacto Regenerativo</option>
+                  <option>Cuidar para Crecer</option>
+                  <option>Programa Integral (3 pilares)</option>
+                  <option>Programa de Intercambio</option>
+                </select>
+              </div>
+              <div>
+                <label for="modalidad">Modalidad</label>
+                <select id="modalidad" name="modalidad">
+                  <option>Consultoría</option>
+                  <option>Capacitación</option>
+                  <option>Curso especializado</option>
+                </select>
+              </div>
+            </div>
+
+            <div>
+              <label for="message">Describe tu reto</label>
+              <textarea id="message" name="message" placeholder="¿Qué quieres lograr? ¿Cuál es tu principal desafío?" required></textarea>
+            </div>
+
+            <div style="display:flex; gap:12px; flex-wrap:wrap; margin-top:20px">
+              <button class="btn" type="submit">Enviar solicitud</button>
+            </div>
+
+            <p id="formMsg" style="margin:16px 0 0; color:var(--muted); font-size:14px"></p>
+          </form>
+
+          <div class="social" aria-label="Redes sociales">
+            <a href="https://www.instagram.com/monocyclo_consultoria/" target="_blank" rel="noopener noreferrer" title="Instagram" aria-label="Instagram">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <rect x="3" y="3" width="18" height="18" rx="5" />
+                <circle cx="12" cy="12" r="4" />
+                <circle cx="17.5" cy="6.5" r="1" fill="currentColor" stroke="none" />
+              </svg>
+            </a>
+            <a href="https://www.youtube.com/@monocyclo" target="_blank" rel="noopener noreferrer" title="YouTube" aria-label="YouTube">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M21.6 7.2a3 3 0 0 0-2.1-2.1C17.8 4.6 12 4.6 12 4.6s-5.8 0-7.5.5A3 3 0 0 0 2.4 7.2 31 31 0 0 0 2 12a31 31 0 0 0 .4 4.8 3 3 0 0 0 2.1 2.1c1.7.5 7.5.5 7.5.5s5.8 0 7.5-.5a3 3 0 0 0 2.1-2.1A31 31 0 0 0 22 12a31 31 0 0 0-.4-4.8Z" />
+                <path d="M10 15.2V8.8L16 12l-6 3.2Z" fill="currentColor" stroke="none" />
+              </svg>
+            </a>
+            <a href="https://www.facebook.com/MonoCyclo/" target="_blank" rel="noopener noreferrer" title="Facebook" aria-label="Facebook">
+              <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <path d="M14 8h2V5h-2c-1.7 0-3 1.3-3 3v3H9v3h2v7h3v-7h2.1l.9-3H14V8c0-.6.4-1 1-1Z" fill="currentColor" stroke="none" />
+              </svg>
+            </a>
+          </div>
+        </div>
+
+        <div class="card" style="padding:32px">
+          <div class="kicker">Qué sigue</div>
+          <h3 style="margin:0 0 20px; font-size:22px; font-weight:600">En 3 pasos</h3>
+          <div class="list">
+            <div class="item">
+              <div class="badge">1</div>
+              <div>
+                <strong>Revisión</strong>
+                <span>Analizamos tu solicitud en 24-48 horas.</span>
+              </div>
+            </div>
+            <div class="item">
+              <div class="badge">2</div>
+              <div>
+                <strong>Llamada</strong>
+                <span>Diagnóstico de 30–45 minutos.</span>
+              </div>
+            </div>
+            <div class="item">
+              <div class="badge">3</div>
+              <div>
+                <strong>Propuesta</strong>
+                <span>Plan con alcance, entregables y calendario.</span>
+              </div>
+            </div>
+          </div>
+
+          <div style="height:20px"></div>
+          <div class="callout">
+            <strong>Pro tip:</strong> Comparte datos existentes (Excel/Sheets) anonimizados. Acelera el diagnóstico hasta 40%.
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+</main>
+
+<footer>
+  <div class="wrap">
+    <div class="foot">
+      <div style="max-width:480px">
+        <img src="submarca_colorsobreblanco.png" alt="Monocyclo" />
+        <small>
+          Consultoría para transformación empresarial y social.<br>
+          Con sede en Morelia, Michoacán • Operación local y regional
+        </small>
+      </div>
+
+      <div>
+        <strong>Contacto</strong>
+        <small>
+          info@monocyclo.com<br>
+          WhatsApp: +52 443 721 5580<br>
+          LinkedIn: /company/monocyclo
+        </small>
+      </div>
+
+      <div>
+        <strong>Síguenos</strong>
+        <small>
+          Instagram: @monocyclo_consultoria<br>
+          YouTube: @monocyclo<br>
+          Facebook: /MonoCyclo
+        </small>
+      </div>
+    </div>
+    <small style="display:block; margin-top:24px; color:var(--muted); text-align:center; font-size:14px">
+      © <span id="year"></span> Monocyclo. Crecimiento con propósito.
+    </small>
+  </div>
+</footer>
+
+<!-- Chatbot WhatsApp flotante -->
+<div class="chatbot">
+  <button class="chatbot-button" aria-label="Abrir WhatsApp">
+    <svg viewBox="0 0 24 24" fill="currentColor">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+  </button>
+</div>
+
+<script>
+  const $ = (s, el=document) => el.querySelector(s);
+  const $$ = (s, el=document) => Array.from(el.querySelectorAll(s));
+
+  // Smooth scroll
+  $$('[data-scroll]').forEach(btn => {
+    btn.addEventListener('click', () => {
+      const id = btn.getAttribute('data-scroll');
+      $(id)?.scrollIntoView({behavior:"smooth", block:"start"});
+    });
+  });
+
+  $$('a[href^="#"]').forEach(link => {
+    link.addEventListener('click', (e) => {
+      e.preventDefault();
+      const target = $(link.getAttribute('href'));
+      target?.scrollIntoView({behavior:"smooth", block:"start"});
+    });
+  });
+
+  // Form
+  const leadForm = $("#leadForm");
+  const formMsg = $("#formMsg");
+
+  leadForm?.addEventListener("submit", async (e) => {
+    e.preventDefault();
+
+    const formData = {
+      timestamp: new Date().toLocaleString('es-MX'),
+      nombre: $("#name").value.trim(),
+      correo: $("#email").value.trim(),
+      empresa: $("#company").value.trim(),
+      whatsapp: $("#phone").value.trim(),
+      interes: $("#interest").value,
+      modalidad: $("#modalidad").value,
+      mensaje: $("#message").value.trim(),
+    };
+
+    // URL de Google Apps Script Web App
+    const scriptURL = 'https://script.google.com/macros/s/AKfycbxQTEdxw3rx98KzCoqeWQ9bLWbu7boUpO2vtRzzo2bvGY3NSeRHD3zZfmyEfkpWE2LC/exec';
+    
+    try {
+      // Mostrar mensaje de envío
+      formMsg.textContent = "Enviando...";
+      formMsg.style.color = "var(--sky)";
+
+      // Enviar a Google Sheets
+      const response = await fetch(scriptURL, {
+        method: 'POST',
+        mode: 'no-cors',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify(formData)
+      });
+
+      // Con mode: 'no-cors' siempre será exitoso
+      formMsg.textContent = "✓ Solicitud enviada correctamente. Te contactaremos pronto.";
+      formMsg.style.color = "var(--sky)";
+      formMsg.style.fontWeight = "500";
+      leadForm.reset();
+      
+    } catch (error) {
+      console.error('Error:', error);
+      formMsg.textContent = "⚠ Hubo un problema. Por favor intenta de nuevo o contáctanos por WhatsApp.";
+      formMsg.style.color = "var(--rust)";
+      formMsg.style.fontWeight = "500";
+    }
+  });
+
+  // Chatbot button - abre WhatsApp directamente
+  $('.chatbot-button')?.addEventListener('click', () => {
+    const whatsappNumber = '5214437215580'; // Formato internacional sin +
+    const message = encodeURIComponent('Hola, me gustaría obtener más información sobre los servicios de Monocyclo.');
+    window.open(`https://wa.me/${whatsappNumber}?text=${message}`, '_blank');
+  });
+
+  $("#year").textContent = new Date().getFullYear();
+</script>
+</body>
+</html>
