@@ -1260,46 +1260,66 @@
     });
   });
 
-  // Lead storage
-  const storeKey = "monocyclo_leads_v6";
-  
-  function getLeads(){
-    try{ return JSON.parse(localStorage.getItem(storeKey) || "[]"); }
-    catch{ return []; }
-  }
-  
-  function saveLead(lead){
-    const leads = getLeads();
-    leads.unshift(lead);
-    localStorage.setItem(storeKey, JSON.stringify(leads.slice(0,100)));
-  }
-
   // Form
   const leadForm = $("#leadForm");
   const formMsg = $("#formMsg");
 
-  leadForm?.addEventListener("submit", (e) => {
+  leadForm?.addEventListener("submit", async (e) => {
     e.preventDefault();
 
-    const payload = {
-      id: crypto?.randomUUID ? crypto.randomUUID() : String(Date.now()),
-      created_at: new Date().toISOString(),
-      form: {
-        name: $("#name").value.trim(),
-        email: $("#email").value.trim(),
-        company: $("#company").value.trim(),
-        phone: $("#phone").value.trim(),
-        interest: $("#interest").value,
-        modalidad: $("#modalidad").value,
-        message: $("#message").value.trim(),
-      }
+    const formData = {
+      timestamp: new Date().toLocaleString('es-MX'),
+      nombre: $("#name").value.trim(),
+      correo: $("#email").value.trim(),
+      empresa: $("#company").value.trim(),
+      whatsapp: $("#phone").value.trim(),
+      interes: $("#interest").value,
+      modalidad: $("#modalidad").value,
+      mensaje: $("#message").value.trim(),
     };
 
-    saveLead(payload);
-    formMsg.textContent = "✓ Solicitud recibida. Te contactaremos pronto.";
-    formMsg.style.color = "var(--sky)";
-    formMsg.style.fontWeight = "500";
-    leadForm.reset();
+    // URL de tu Google Apps Script Web App
+    // REEMPLAZA ESTA URL con la tuya después de desplegar el script
+    const scriptURL = 'TU_URL_DE_GOOGLE_APPS_SCRIPT_AQUI';
+    
+    try {
+      // Mostrar mensaje de envío
+      formMsg.textContent = "Enviando...";
+      formMsg.style.color = "var(--sky)";
+
+      // Enviar a Google Sheets
+      const response = await fetch(scriptURL, {
+        method: 'POST',
+        body: JSON.stringify(formData),
+        headers: {
+          'Content-Type': 'application/json'
+        }
+      });
+
+      if (response.ok) {
+        formMsg.textContent = "✓ Solicitud recibida. Te contactaremos pronto.";
+        formMsg.style.color = "var(--sky)";
+        formMsg.style.fontWeight = "500";
+        leadForm.reset();
+      } else {
+        throw new Error('Error al enviar');
+      }
+    } catch (error) {
+      // Si falla, guardar localmente
+      const storeKey = "monocyclo_leads_v6";
+      const leads = JSON.parse(localStorage.getItem(storeKey) || "[]");
+      leads.unshift({
+        id: crypto?.randomUUID ? crypto.randomUUID() : String(Date.now()),
+        created_at: new Date().toISOString(),
+        form: formData
+      });
+      localStorage.setItem(storeKey, JSON.stringify(leads.slice(0,100)));
+      
+      formMsg.textContent = "✓ Solicitud guardada temporalmente. Te contactaremos pronto.";
+      formMsg.style.color = "var(--gold)";
+      formMsg.style.fontWeight = "500";
+      leadForm.reset();
+    }
   });
 
   // Chatbot button - abre WhatsApp directamente
